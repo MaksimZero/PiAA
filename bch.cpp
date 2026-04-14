@@ -280,39 +280,39 @@ int solveWithMandatory(int N, vector<int>& mandatory,
     return 0;
 }
 
-// int main() {
-//     int N;
-//     cout << "Введите N: ";
-//     cin >> N;
+int main() {
+    int N;
+    cout << "Введите N: ";
+    cin >> N;
 
 
-//     int m;
-//     cout << "Введите количество обязательных квадратов: ";
-//     cin >> m;
+    int m;
+    cout << "Введите количество обязательных квадратов: ";
+    cin >> m;
     
-//     vector<int> mandatorySizes(m);
-//     if (m > 0) {
-//         cout << "Введите их размеры: ";
-//         for (int i = 0; i < m; ++i) {
-//             cin >> mandatorySizes[i];
-//         }
-//     }
+    vector<int> mandatorySizes(m);
+    if (m > 0) {
+        cout << "Введите их размеры: ";
+        for (int i = 0; i < m; ++i) {
+            cin >> mandatorySizes[i];
+        }
+    }
     
-//     vector<PackedSquare> result;
-//     int resultCount;
+    vector<PackedSquare> result;
+    int resultCount;
     
-//     int success = solveWithMandatory(N, mandatorySizes, result, resultCount);
+    int success = solveWithMandatory(N, mandatorySizes, result, resultCount);
     
-//     if (success && !result.empty()) {
-//         cout << "\n========================================" << endl;
-//         cout << "ИТОГОВЫЙ ОТВЕТ:" << endl;
-//         cout << resultCount << endl;
-//         for (const auto& sq : result) {
-//             cout << sq.getX() + 1 << " " << sq.getY() + 1 << " " << sq.getSize() << endl;
-//         }
-//     } else if (!success) {
-//         cout << "\nНе найдено решения с заданными обязательными квадратами." << endl;
-//     }
+    if (success && !result.empty()) {
+        cout << "\n========================================" << endl;
+        cout << "ИТОГОВЫЙ ОТВЕТ:" << endl;
+        cout << resultCount << endl;
+        for (const auto& sq : result) {
+            cout << sq.getX() + 1 << " " << sq.getY() + 1 << " " << sq.getSize() << endl;
+        }
+    } else if (!success) {
+        cout << "\nНе найдено решения с заданными обязательными квадратами." << endl;
+    }
 
-//     return 0;
-// }
+    return 0;
+}
