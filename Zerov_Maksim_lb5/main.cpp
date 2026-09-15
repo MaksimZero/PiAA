@@ -176,22 +176,6 @@ int main() {
     }
 
     cout << "Файлы сохранены:\n";
-    cout << "  " << dotFile << "   — описание автомата (Graphviz DOT)\n";
-    cout << "  " << resFile << "   — вхождения образцов\n";
-    cout << '\n';
-    cout << "Чтобы получить картинку, выполните одну из команд:\n";
-    cout << "  dot -Tpng " << dotFile << " -o automaton.png\n";
-    cout << "  dot -Tsvg " << dotFile << " -o automaton.svg\n";
-    cout << "  dot -Tpdf " << dotFile << " -o automaton.pdf\n";
-    cout << '\n';
-    cout << "Установка Graphviz:\n";
-    cout << "  Linux:   sudo apt install graphviz\n";
-    cout << "  macOS:   brew install graphviz\n";
-    cout << "  Windows: choco install graphviz\n";
-    cout << '\n';
-    cout << "Онлайн-просмотр без установки:\n";
-    cout << "  https://dreampuf.github.io/GraphvizOnline/\n";
-    cout << '\n';
 
     cout << "--- Вхождения ---\n";
     for (auto &pr : res) {
