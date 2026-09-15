@@ -20,33 +20,78 @@ int main() {
     vector<vector<int>> dp(n + 1, vector<int>(m + 1, INF));
     dp[0][0] = 0;
     
+    cout << "A=" << A << " B=" << B << "\n";
+    cout << "стоимости: замена=" << cost_replace << " вставка=" << cost_insert 
+         << " удаление=" << cost_delete << " замена2=" << cost_replace2 << "\n\n";
+    
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= m; j++) {
-            if (dp[i][j] == INF) continue;
+            if (dp[i][j] == INF) {
+                cout << "(" << i << "," << j << ") недостижимо\n";
+                continue;
+            }
+            cout << "(" << i << "," << j << ") стоимость=" << dp[i][j] << "\n";
             
             if (i < n && j < m && A[i] == B[j]) {
-                dp[i + 1][j + 1] = min(dp[i + 1][j + 1], dp[i][j]);
+                int ni = i+1, nj = j+1;
+                int nc = dp[i][j];
+                if (nc < dp[ni][nj]) {
+                    dp[ni][nj] = nc;
+                    cout << "  совпадение -> (" << ni << "," << nj << ")=" << nc << "\n";
+                }
             }
             
             if (i < n && j < m && A[i] != B[j]) {
-                dp[i + 1][j + 1] = min(dp[i + 1][j + 1], dp[i][j] + cost_replace);
+                int ni = i+1, nj = j+1;
+                int nc = dp[i][j] + cost_replace;
+                if (nc < dp[ni][nj]) {
+                    dp[ni][nj] = nc;
+                    cout << "  замена -> (" << ni << "," << nj << ")=" << nc << "\n";
+                }
             }
             
             if (i < n) {
-                dp[i + 1][j] = min(dp[i + 1][j], dp[i][j] + cost_delete);
+                int ni = i+1, nj = j;
+                int nc = dp[i][j] + cost_delete;
+                if (nc < dp[ni][nj]) {
+                    dp[ni][nj] = nc;
+                    cout << "  удаление -> (" << ni << "," << nj << ")=" << nc << "\n";
+                }
             }
             
             if (j < m) {
-                dp[i][j + 1] = min(dp[i][j + 1], dp[i][j] + cost_insert);
+                int ni = i, nj = j+1;
+                int nc = dp[i][j] + cost_insert;
+                if (nc < dp[ni][nj]) {
+                    dp[ni][nj] = nc;
+                    cout << "  вставка -> (" << ni << "," << nj << ")=" << nc << "\n";
+                }
             }
             
             if (i + 2 <= n && j + 1 <= m) {
-                dp[i + 2][j + 1] = min(dp[i + 2][j + 1], dp[i][j] + cost_replace2);
+                int ni = i+2, nj = j+1;
+                int nc = dp[i][j] + cost_replace2;
+                if (nc < dp[ni][nj]) {
+                    dp[ni][nj] = nc;
+                    cout << "  замена двух на один -> (" << ni << "," << nj << ")=" << nc << "\n";
+                }
             }
+            cout << "\n";
         }
     }
     
-    cout << dp[n][m] << endl;
+    cout << "\nТаблица DP:\n";
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= m; j++) {
+            if (dp[i][j] >= INF/2) cout << "INF ";
+            else cout << dp[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    cout << "\nОтвет: " << dp[n][m] << "\n";
     
     return 0;
 }
+
+// редакционное предписание
+// как оптимизировать алгоритм по памяти.

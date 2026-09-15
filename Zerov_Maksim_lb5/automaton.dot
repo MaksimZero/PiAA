@@ -1,0 +1,20 @@
+digraph Automaton {
+  rankdir=LR;
+  node [shape=circle];
+  start [shape=point];
+  start -> 0;
+  0 [label="0"];
+  1 [shape=doublecircle, label="1\n3"];
+  2 [label="2"];
+  3 [shape=doublecircle, label="3\n2"];
+  4 [shape=doublecircle, label="4\n1"];
+  0 -> 1 [label="T"];
+  1 -> 2 [label="A"];
+  2 -> 3 [label="G"];
+  3 -> 4 [label="T"];
+  1 -> 0 [style=dashed, color=blue, constraint=false];
+  2 -> 0 [style=dashed, color=blue, constraint=false];
+  3 -> 0 [style=dashed, color=blue, constraint=false];
+  4 -> 1 [style=dashed, color=blue, constraint=false];
+  4 -> 1 [style=dotted, color=red, constraint=false];
+}
